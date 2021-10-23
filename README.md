@@ -1,2 +1,2 @@
 # ldap-auth-server
-Simple prject where implemented LDAP authentication using Passport
+Simple project where implemented LDAP authentication using Passport
