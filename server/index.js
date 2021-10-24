@@ -3,6 +3,7 @@ import express from 'express'
 import router from './router/router.js'
 import passport from 'passport'
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
 import LdapStrategy from 'passport-ldapauth'
 import errorMiddleware from './middlewares/error-middleware.js'
 
@@ -26,6 +27,9 @@ const OPTS = {
 app.use(passport.initialize({userProperty: 'user'}));
 app.use(express.json())
 app.use(cookieParser())
+app.use(cors({
+    credentials: true,
+    origin: process.env.CLIENT_URL}))
 app.use('/api', router)
 
 passport.use(new LdapStrategy(OPTS));
