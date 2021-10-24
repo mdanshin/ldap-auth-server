@@ -1,7 +1,7 @@
 import userService from '../services/user-service.js'
 
 class UserController {
-    async login(req, res, next) {
+    async login(req: any, res: any, next: any) {
         try {
             const {displayName, mail} = req.user
             const userData = await userService.login(displayName, mail)
@@ -12,7 +12,7 @@ class UserController {
         }
     }
 
-    async logout(req, res, next) {
+    async logout(req: any, res: any, next: any) {
         try {
             res.clearCookie('refreshToken')
             return res.status(204).send({message: "Logout successfully"})
@@ -21,7 +21,7 @@ class UserController {
         }
     }
 
-    async refresh(req, res, next) {
+    async refresh(req: any, res: any, next: any) {
         try {
             const {refreshToken} = req.cookies;
             const userData = await userService.refresh(refreshToken)
@@ -32,7 +32,7 @@ class UserController {
         }
     }
 
-    async getUsers(req, res, next) {
+    async getUsers(req: any, res: any, next: any) {
         try {
             const users = await userService.getAllUsers()
             return res.json(users)
@@ -40,18 +40,6 @@ class UserController {
             next(e)
         }
     }
-
-    sidToString(req, res, next) {
-        try {
-            const {sid} = req.body
-            const sidToString = userService.sidToString(sid)
-            return res.json(sidToString)
-        } catch (e) {
-            next(e)
-        }
-    }
-
-
 }
 
 export default new UserController();

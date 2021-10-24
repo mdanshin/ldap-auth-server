@@ -3,14 +3,14 @@ import UserDto from '../dtos/user-dtos.js'
 import ApiError from '../exeptions/api-error.js'
 
 class UserService {
-    async login(displayName, mail) {
+    async login(displayName: any, mail: any) {
         const userDto = new UserDto({displayName, mail})
         const tokens = tokenService.generateTokens({...userDto})
 
         return {...tokens, user: userDto}
     }
 
-    async refresh(refreshToken) {
+    async refresh(refreshToken: any) {
         if (!refreshToken) {
             throw ApiError.UnauthorizedError()
         }

@@ -1,9 +1,9 @@
-import Router from 'express'
+import * as express from 'express'
 import passport from 'passport'
 import userController from '../controllers/user-controller.js'
 import authMiddleWare from '../middlewares/auth-middleware.js'
 
-const router = new Router()
+const router = express.Router()
 
 router.post('/login',
     passport.authenticate('ldapauth', {
@@ -13,6 +13,5 @@ router.post('/login',
 router.post('/logout', userController.logout)
 router.get('/refresh', userController.refresh)
 router.get('/users', authMiddleWare, userController.getUsers)
-router.get('/sid', userController.sidToString)
 
 export default router

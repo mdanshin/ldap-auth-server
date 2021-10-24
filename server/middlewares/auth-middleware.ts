@@ -1,7 +1,7 @@
 import ApiError from '../exeptions/api-error.js'
 import tokenService from '../services/token-service.js'
 
-export default function (req, res, next) {
+export default function (req: any, res: any, next: any) {
     try {
         const authorizationHeader = req.headers.authorization;
         if (!authorizationHeader) {

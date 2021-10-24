@@ -4,7 +4,7 @@ import router from './router/router.js'
 import passport from 'passport'
 import cookieParser from 'cookie-parser'
 import LdapStrategy from 'passport-ldapauth'
-import errorMiddleware from './middlewares/error-middleware.js'
+import errorMiddleware from './middlewares/auth-middleware.js'
 
 const app = express()
 
@@ -34,10 +34,12 @@ app.use(errorMiddleware)
 
 const start = async () => {
     try {
-        app.listen(PORT, () => console.log('Starting server...'));
+        app.listen(PORT);
     } catch (e) {
-        console.log(e)
+        // TODO:replace uses of console.log with a logging framework such as winston
+        // tslint:disable: no-console
+        console.error(e)
     }
 }
 
-start().then(() => console.log(`Server is running on port ${PORT}`))
+start().then()
