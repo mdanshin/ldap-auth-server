@@ -1,5 +1,6 @@
 import dotenv  from "dotenv"
 import express from 'express'
+import cors from 'cors'
 import router from './router/router.js'
 import passport from 'passport'
 import cookieParser from 'cookie-parser'
@@ -26,6 +27,9 @@ const OPTS = {
 app.use(passport.initialize({userProperty: 'user'}));
 app.use(express.json())
 app.use(cookieParser())
+app.use(cors({
+    credentials: true,
+    origin: process.env.CLIENT_URL}))
 app.use('/api', router)
 
 passport.use(new LdapStrategy(OPTS));
