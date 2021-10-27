@@ -13,6 +13,5 @@ router.post('/login',
 router.post('/logout', userController.logout)
 router.get('/refresh', userController.refresh)
 router.get('/users', authMiddleWare, userController.getUsers)
-router.get('/sid', userController.sidToString)
 
 export default router

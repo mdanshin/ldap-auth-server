@@ -40,18 +40,6 @@ class UserController {
             next(e)
         }
     }
-
-    sidToString(req, res, next) {
-        try {
-            const {sid} = req.body
-            const sidToString = userService.sidToString(sid)
-            return res.json(sidToString)
-        } catch (e) {
-            next(e)
-        }
-    }
-
-
 }
 
 export default new UserController();
